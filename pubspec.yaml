@@ -1,0 +1,33 @@
+name: stlgui
+description: SainTeLyon app
+version: 1.0.0+1
+environment:
+  sdk: '>=2.12.0 <3.0.0'
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  provider: ^5.0.0
+  http: 0.13.0
+  line_icons: ^2.0.1
+  flutter_dotenv: ^5.0.0
+  google_maps_flutter: ^2.0.6
+  google_maps_flutter_web: ^0.3.0
+  uuid: ^3.0.4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  pedantic: ^1.10.0
+  flutter_lints: ^1.0.0
+flutter:
+  uses-material-design: true
+  assets:
+    - .env
+    - images/live-summit.png
+
+# .env must contains
+#HOST_SERVER=<IPV4>
+#HOST_PORT=8080
+#HOST_PROTOCOL=http
+#GOOGLE_MAPS_API_KEY=<KEY>
