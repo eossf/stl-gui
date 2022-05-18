@@ -6,13 +6,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.2
+  cupertino_icons: ^1.0.4
   provider: ^5.0.0
-  http: 0.13.0
-  line_icons: ^2.0.1
+  http: 0.13.4
+  line_icons: ^2.0.0
   flutter_dotenv: ^5.0.0
-  google_maps_flutter: ^2.0.6
-  google_maps_flutter_web: ^0.3.0
+  google_maps_flutter: ^2.1.5
+  google_maps_flutter_web: ^0.3.2+2
   uuid: ^3.0.4
 
 dev_dependencies:
@@ -25,9 +25,3 @@ flutter:
   assets:
     - .env
     - images/live-summit.png
-
-# .env must contains
-#HOST_SERVER=<IPV4>
-#HOST_PORT=8080
-#HOST_PROTOCOL=http
-#GOOGLE_MAPS_API_KEY=<KEY>

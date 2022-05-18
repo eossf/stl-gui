@@ -26,10 +26,18 @@ Doctor summary (to see all details, run flutter doctor -v):
 [✓] VS Code
 [✓] Connected device (1 available)
 ````
+
+## Android setup
+
+Win
+flutter config --android-studio-dir "C:\Program Files\Android\Android Studio"
+
+Install the plugin Flutter and restart the IDE 
+
 ## Create the application skeleton
 ````bash
-flutter create stl-mobile
-cd stl-mobile
+flutter create stl-gui
+cd stl-gui
 ````
 
 ## Dependencies
@@ -72,7 +80,10 @@ uncomment and set data dir for CORS (create the folder CORS as below)
 comment disable extensions
    '//--disable-extensions',
 
-- [x] add a CORS-disable extension to chrome (i.e. chrome://extensions/?id=lfhmikememgdcahcdlaciloancbhjino)
+- [x] add a CORS disable extension to chrome (i.e. chrome://extensions/?id=lfhmikememgdcahcdlaciloancbhjino)
+  CORS-unblock
+  CORS disable
+  ...
 
 - [x] remove  flutter/bin/cache/flutter_tools.stamp
 

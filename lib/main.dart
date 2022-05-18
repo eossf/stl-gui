@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 import 'package:stlgui/common/theme.dart';
 import 'package:stlgui/models/detail.dart';
 import 'package:stlgui/models/events.dart';
+import 'package:stlgui/screens/screen_login.dart';
 import 'package:stlgui/screens/screen_view.dart';
 import 'package:stlgui/screens/screen_events.dart';
 // import 'package:stlgui/screens/screen_login.dart';
@@ -31,6 +32,8 @@ Future<void> loadEnv() async {
 
 Future fetchTracks() async {
   var mainUrl = dotenv.env["HOST_PROTOCOL"]! + '://' + dotenv.env["HOST_SERVER"]! + ':' + dotenv.env["HOST_PORT"]!;
+  //const corsHeaders = {'Access-Control-Allow-Origin': '*','Access-Control-Allow-Methods': 'GET, POST, DELETE, OPTIONS','Access-Control-Allow-Headers': '*',};
+
   final response = await http.get(Uri.parse(mainUrl + '/tracks'));
   if (response.statusCode == 200) {
     List<Track> lt = (json.decode(response.body) as List).map((i) => Track.fromJson(i)).toList();
@@ -69,7 +72,7 @@ class MyApp extends StatelessWidget {
         theme: appTheme,
         initialRoute: '/',
         routes: {
-          '/': (context) => GoogleMap(
+          '/googlemaps': (context) => GoogleMap(
             initialCameraPosition: CameraPosition(
               target: _center,
               zoom: 11.0,
@@ -78,7 +81,7 @@ class MyApp extends StatelessWidget {
             markers: _markers,
             onCameraMove: (position) => _lastMapPosition = position.target,
           ),
-//          '/': (context) => ScreenLogin(),
+          '/': (context) => ScreenLogin(),
           '/events': (context) => ScreenEvents(listTracks),
           '/view': (context) => ScreenView(),
         },
