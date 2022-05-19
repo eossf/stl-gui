@@ -79,16 +79,21 @@ uncomment and set data dir for CORS (create the folder CORS as below)
    '--user-data-dir=~/CORS',
 comment disable extensions
    '//--disable-extensions',
+   '--disable-web-security'
+
+- [x] add headers in the HTTPS Server
+  header.Set("Access-Control-Allow-Credentials", "true")
+  header.Set("Access-Control-Allow-Methods", header.Get("Allow"))
+  header.Set("Access-Control-Allow-Origin", "*")
+  header.Set("Access-Control-Allow-Headers", "Origin,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,locale")
+  header.Set("Access-Control-Allow-Methods", "GET, PUT, POST, OPTIONS")
 
 - [x] add a CORS disable extension to chrome (i.e. chrome://extensions/?id=lfhmikememgdcahcdlaciloancbhjino)
   CORS-unblock
   CORS disable
   ...
-
 - [x] remove  flutter/bin/cache/flutter_tools.stamp
-
 - [x] restart android studio
-
 
 # TODO
 - [ ] store signed-in user, to avoid sign in again

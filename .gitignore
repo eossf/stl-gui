@@ -24,3 +24,7 @@ doc/api/
 .env
 
 .flutter*
+.generated*
+*.bak
+lib/generated*
+linux/flutter/generated*

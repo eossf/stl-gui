@@ -13,7 +13,6 @@ import 'package:stlgui/models/events.dart';
 import 'package:stlgui/screens/screen_login.dart';
 import 'package:stlgui/screens/screen_view.dart';
 import 'package:stlgui/screens/screen_events.dart';
-// import 'package:stlgui/screens/screen_login.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'models/track.dart';
@@ -32,7 +31,6 @@ Future<void> loadEnv() async {
 
 Future fetchTracks() async {
   var mainUrl = dotenv.env["HOST_PROTOCOL"]! + '://' + dotenv.env["HOST_SERVER"]! + ':' + dotenv.env["HOST_PORT"]!;
-  //const corsHeaders = {'Access-Control-Allow-Origin': '*','Access-Control-Allow-Methods': 'GET, POST, DELETE, OPTIONS','Access-Control-Allow-Headers': '*',};
 
   final response = await http.get(Uri.parse(mainUrl + '/tracks'));
   if (response.statusCode == 200) {
