@@ -10,5 +10,5 @@ class Screen {
 }
 
 class Latlng {
-  static const LatLng defaultLatLng = LatLng(46.186673,6.290673);
+  static const LatLng defaultLatLng = LatLng(46.184416227042675018310546875,6.26998200081288814544677734375);
 }

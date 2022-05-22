@@ -120,7 +120,7 @@ comment disable extensions
 - [ ] github ticket 
 - [_] display googlemaps with the starting point of the selected Tracks
      set first point
-   _ display map
+   x display map
    x API keys (dev)
 - [x] put 4 icons : View, Follow, Record, Live
 - [x] fix issue index/position

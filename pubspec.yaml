@@ -7,17 +7,12 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.4
-  provider: ^6.0.2
+  provider: ^6.0.3
   http: 0.13.4
   line_icons: ^2.0.1
   flutter_dotenv: ^5.0.2
-#  google_maps: ^6.1.0
   google_maps_flutter: ^2.1.5
   google_maps_flutter_web: ^0.3.2+2
-#  google_maps_flutter_platform_interface: ^2.1.6
-#  google_static_maps_controller: ^1.0.0
-#  google_maps_utils: ^1.5.0+0
-#  uuid: ^3.0.6
 
 dev_dependencies:
   flutter_test:
