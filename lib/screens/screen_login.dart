@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../constants.dart' as Constants;
 
 class ScreenLogin extends StatelessWidget {
   @override
@@ -31,7 +32,7 @@ class ScreenLogin extends StatelessWidget {
               ElevatedButton(
                 child: Text('ENTER'),
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, '/events');
+                  Navigator.pushReplacementNamed(context, Constants.Screen.tracksList);
                 },
                 style: ElevatedButton.styleFrom(
                   primary: Colors.yellow,

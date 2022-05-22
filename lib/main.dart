@@ -2,6 +2,9 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:html' as html;
 import 'dart:js' as js;
+import 'package:stlgui/screens/screen_view_track.dart';
+
+import 'constants.dart' as Constants;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -10,10 +13,9 @@ import 'package:provider/provider.dart';
 import 'package:stlgui/common/theme.dart';
 import 'package:stlgui/models/detail.dart';
 import 'package:stlgui/models/events.dart';
+import 'package:stlgui/screens/screen_googlemaps.dart';
 import 'package:stlgui/screens/screen_login.dart';
-import 'package:stlgui/screens/screen_view.dart';
-import 'package:stlgui/screens/screen_events.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:stlgui/screens/screen_tracks_list.dart';
 
 import 'models/track.dart';
 
@@ -42,11 +44,7 @@ Future fetchTracks() async {
 }
 
 class MyApp extends StatelessWidget {
-  final Set<Marker> _markers = {};
   List<Track> listTracks;
-  static LatLng _center = LatLng(-15.4630239974464, 28.363397732282127);
-  LatLng? _lastMapPosition;
-
   MyApp(this.listTracks);
 
   @override
@@ -68,20 +66,12 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Summit Tracks List',
         theme: appTheme,
-        initialRoute: '/',
+        initialRoute: Constants.Screen.home,
         routes: {
-          '/googlemaps': (context) => GoogleMap(
-            initialCameraPosition: CameraPosition(
-              target: _center,
-              zoom: 11.0,
-            ),
-            mapType: MapType.normal,
-            markers: _markers,
-            onCameraMove: (position) => _lastMapPosition = position.target,
-          ),
-          '/': (context) => ScreenLogin(),
-          '/events': (context) => ScreenEvents(listTracks),
-          '/view': (context) => ScreenView(),
+          Constants.Screen.home : (context) => ScreenLogin(),
+          Constants.Screen.tracksList: (context) => ScreenTracksList(listTracks),
+          Constants.Screen.googleMaps: (context) => ScreenGoogleMaps(),
+          Constants.Screen.viewtrack: (context) => ScreenViewTrack(),
         },
       ),
     );

@@ -4,12 +4,13 @@ import 'package:provider/provider.dart';
 import 'package:stlgui/models/detail.dart';
 import 'package:stlgui/models/events.dart';
 import 'package:stlgui/models/track.dart';
+import '../constants.dart' as Constants;
 
-class ScreenEvents extends StatelessWidget {
+class ScreenTracksList extends StatelessWidget {
   int itemsCount = 0;
   List<Track> listTracks;
 
-  ScreenEvents(this.listTracks) {
+  ScreenTracksList(this.listTracks) {
     itemsCount = listTracks.length;
   }
 
@@ -32,6 +33,7 @@ class ScreenEvents extends StatelessWidget {
     );
   }
 }
+
 
 class _MyListItem extends StatelessWidget {
   final int index;
@@ -71,6 +73,8 @@ class _MyListItem extends StatelessWidget {
   }
 }
 
+// List of tracks
+// app bar with buttons
 class _MyAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -81,31 +85,33 @@ class _MyAppBar extends StatelessWidget {
           Navigator.of(context).pop();
         },
       ),
-      title: Text('List of available events', style: Theme.of(context).textTheme.headline5),
+      title: Text('List of available tracks', style: Theme.of(context).textTheme.headline5),
       floating: true,
       actions: [
         // View, Follow, Record, Live
         IconButton(
           icon: LineIcon.streetView(),
-          onPressed: () => Navigator.pushNamed(context, '/view'),
+          hoverColor: Colors.amber,
+          onPressed: () => Navigator.pushNamed(context,  Constants.Screen.googleMaps),
         ),
         IconButton(
           icon: LineIcon.alternateMapMarked(),
-          onPressed: () => Navigator.pushNamed(context, '/follow'),
+          onPressed: () => Navigator.pushNamed(context, Constants.Screen.home),
         ),
         IconButton(
           icon: LineIcon.recordVinyl(),
-          onPressed: () => Navigator.pushNamed(context, '/record'),
+          onPressed: () => Navigator.pushNamed(context, Constants.Screen.home),
         ),
         IconButton(
           icon: LineIcon.video(),
-          onPressed: () => Navigator.pushNamed(context, '/live'),
+          onPressed: () => Navigator.pushNamed(context, Constants.Screen.home),
         ),
       ],
     );
   }
 }
 
+// button for selecting and displaying detail of a track
 class _GoButton extends StatelessWidget {
   final Track item;
 
@@ -122,7 +128,7 @@ class _GoButton extends StatelessWidget {
               var detail = context.read<DetailModel>();
               detail.clear();
               detail.add(item);
-              Navigator.pushNamed(context, '/view');
+              Navigator.pushNamed(context, Constants.Screen.viewtrack);
             },
       style: ButtonStyle(
         foregroundColor: MaterialStateProperty.all(item.color),

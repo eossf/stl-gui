@@ -96,6 +96,7 @@ comment disable extensions
 - [x] restart android studio
 
 # TODO
+- [_] display /view, googlemaps with current location
 - [ ] store signed-in user, to avoid sign in again
 - [ ] root "/" page displays logo and background image
 - [ ] display splash screen

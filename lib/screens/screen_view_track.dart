@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:stlgui/models/detail.dart';
+import '../constants.dart' as Constants;
 
-class ScreenView extends StatelessWidget {
+class ScreenViewTrack extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var events = context.read<DetailModel>();
