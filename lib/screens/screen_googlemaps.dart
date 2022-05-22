@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:stlgui/models/detail.dart';
 import 'package:provider/provider.dart';
-import '../constants.dart' as Constants;
+
+import 'package:stlgui/models/detail.dart';
+import 'package:stlgui/constants.dart' as Constants;
 
 class ScreenGoogleMaps extends StatefulWidget {
   const ScreenGoogleMaps({Key? key}) : super(key: key);
@@ -14,10 +17,12 @@ class ScreenGoogleMaps extends StatefulWidget {
 class _ScreenGoogleMapsState extends State<ScreenGoogleMaps> {
   late GoogleMapController mapController;
   Set<Marker> markers = {};
+  LatLng startLocation = LatLng(46.184416227042675018310546875,6.26998200081288814544677734375);
   LatLng _trackPosition = Constants.Latlng.defaultLatLng;
 
   @override
   void initState() {
+    addMarkers();
     super.initState();
   }
 
@@ -26,16 +31,28 @@ class _ScreenGoogleMapsState extends State<ScreenGoogleMaps> {
     super.dispose();
   }
 
-  void _onMapCreated(GoogleMapController controller) {
+  addMarkers() async {
+    BitmapDescriptor markerbitmap = await BitmapDescriptor.fromAssetImage(
+      ImageConfiguration(
+        size: Size(35, 35),
+      ),
+      "assets/starting-point.png",
+    );
+
+    markers.add(
+        Marker( //add start location marker
+          markerId: MarkerId("starting-point"),
+          position: startLocation, //position of marker
+          infoWindow: InfoWindow( //popup info
+            title: 'Starting Point ',
+            snippet: 'Start Marker',
+          ),
+          icon: markerbitmap,
+        )
+    );
+
     setState(() {
-      markers.add(const Marker(
-        markerId: MarkerId('starting-marker'),
-        position: LatLng(46.184416227042675018310546875,6.26998200081288814544677734375),
-        infoWindow: InfoWindow(
-          title: 'Starting Point',
-          snippet: 'Your track begin here',
-        ),
-      ));
+      //refresh UI
     });
   }
 
@@ -58,9 +75,13 @@ class _ScreenGoogleMapsState extends State<ScreenGoogleMaps> {
         backgroundColor: Colors.lightBlueAccent,
       ),
       body: GoogleMap(
-        onMapCreated: _onMapCreated,
+        onMapCreated: (controller) { //method called when map is created
+          setState(() {
+            mapController = controller;
+          });
+        },
         initialCameraPosition: CameraPosition(
-          target: _trackPosition,
+          target: startLocation,
           zoom: 13.0,
         ),
         markers: markers,

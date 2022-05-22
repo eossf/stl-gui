@@ -23,3 +23,4 @@ flutter:
   assets:
     - .env
     - images/summit-tracks-live-2.png
+    - assets/starting-point.png
