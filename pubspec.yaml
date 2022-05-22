@@ -27,4 +27,4 @@ flutter:
   uses-material-design: true
   assets:
     - .env
-    - images/live-summit.png
+    - images/summit-tracks-live-2.png

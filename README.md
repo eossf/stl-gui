@@ -1,4 +1,20 @@
-# SainTeLyon mobile and web application
+# Summit Tracks Live
+
+STL is a demo of a fullstack application.
+Features are :
+
+    v.0.0.x Alpha version: display tracks, display menu, test persistance, gps, googlemaps, metadata, ...
+    v0.1.x View Tracks: display tracks, current location for guiding a runner
+    v0.2.x Misc: Import, Export GPX, Enrich with metadata, ...
+    v0.3.x Follow a runner: find location of one or more runner, go to each steps using mobile GPS direction
+    v0.4.x Live Run: follow an existing track, record a new track, while your runs
+
+## Release
+
+Current v 0.0.1
+
+![](images/summit-tracks-live-3.png)
+
 ## Installation Flutter from Github
 STL is a demo of a fullstack application, features are :
 - [ ] Live Run, Follow an existing track (GPX)

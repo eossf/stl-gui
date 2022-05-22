@@ -64,7 +64,7 @@ class MyApp extends StatelessWidget {
       ],
 //      View, Follow, Record, Live
       child: MaterialApp(
-        title: 'Summit Tracks List',
+        title: 'Summit Tracks Live',
         theme: appTheme,
         initialRoute: Constants.Screen.home,
         routes: {
