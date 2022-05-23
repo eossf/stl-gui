@@ -114,12 +114,12 @@ comment disable extensions
 # TODO
 - [_] display /view, googlemaps with current location
 - [ ] store signed-in user, to avoid sign in again
-- [ ] root "/" page displays logo and background image
-- [ ] display splash screen
+- [x] root "/" page displays logo and background image
+- [x] display splash screen
 - [ ] CICD - first version, stl-backend PR/branch merged => redeploy
-- [ ] github ticket 
+- [x] github ticket 
 - [_] display googlemaps with the starting point of the selected Tracks
-     set first point
+   x set first point
    x display map
    x API keys (dev)
 - [x] put 4 icons : View, Follow, Record, Live

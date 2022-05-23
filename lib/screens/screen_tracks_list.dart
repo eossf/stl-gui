@@ -96,7 +96,7 @@ class _MyAppBar extends StatelessWidget {
         ),
         IconButton(
           icon: LineIcon.alternateMapMarked(),
-          onPressed: () => Navigator.pushNamed(context, Constants.Screen.home),
+          onPressed: () => Navigator.pushNamed(context, Constants.Screen.geolocation),
         ),
         IconButton(
           icon: LineIcon.recordVinyl(),

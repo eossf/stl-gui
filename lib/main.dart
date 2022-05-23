@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:html' as html;
 import 'dart:js' as js;
+import 'package:stlgui/screens/screen_geolocation.dart';
 import 'package:stlgui/screens/screen_view_track.dart';
 
 import 'constants.dart' as Constants;
@@ -72,6 +73,7 @@ class MyApp extends StatelessWidget {
           Constants.Screen.tracksList: (context) => ScreenTracksList(listTracks),
           Constants.Screen.googleMaps: (context) => ScreenGoogleMaps(),
           Constants.Screen.viewtrack: (context) => ScreenViewTrack(),
+          Constants.Screen.geolocation: (context) => ScreenGeolocation(),
         },
       ),
     );
@@ -83,4 +85,3 @@ enum PlaceCategory {
   visited,
   wantToGo,
 }
-

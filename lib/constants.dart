@@ -7,6 +7,7 @@ class Screen {
   static const String viewtrack = home + 'viewtrack';
   static const String tracksList = home + 'trackslist';
   static const String googleMaps = home + 'googlemaps';
+  static const String geolocation = home + 'geolocation';
 }
 
 class Latlng {
