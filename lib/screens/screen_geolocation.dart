@@ -87,6 +87,8 @@ class _ScreenGeolocation extends State<ScreenGeolocation> {
                   onPressed: () async {
                     Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
                     locationText = '${position.latitude.toString()}, ${position.longitude.toString()}';
+                    print('${position.latitude.toString()}, ${position.longitude.toString()}');
+                    setState()=>{};
                   },
                   child: Text(locationText),
                 ),
