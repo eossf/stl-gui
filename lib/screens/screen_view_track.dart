@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:stlgui/models/detail.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class ScreenViewTrack extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
     var events = context.read<DetailModel>();
-    var trackName = !events.isEmpty() ? events.tracks.first.name : " - ";
+    //var trackName = !events.isEmpty() ? events.tracks.first.name : " - ";
+    var trackName = "test title";
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -45,74 +48,42 @@ class ScreenViewTrack extends StatelessWidget {
 class _DetailList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    //var trackNameStyle = Theme.of(context).textTheme.headline6;
+    /*var trackNameStyle = Theme.of(context).textTheme.headline6;
     var detail = context.read<DetailModel>();
-    var trackName =  !detail.isEmpty() ? detail.tracks.first.name : '';
+    var trackName =  !detail.isEmpty() ? detail.tracks.first.name : '<empty>';*/
 
-    return ListView(
-      children: const <Widget>[
-        Card(
-            child: ListTile(
-          leading: FlutterLogo(),
-          title: Text("Track Name"),
-          )
-        ),
-        Card(
-          child: ListTile(
-            leading: FlutterLogo(),
-            title: Text('One-line with leading widget'),
+    var trackName = "test";
+
+    return Container(
+      height: 16.0, // in logical pixels
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      decoration: BoxDecoration(color: Colors.black),
+      // Row is a horizontal, linear layout.
+      child: Row(
+        children: [
+          Expanded(
+            child: GoogleMap(
+              initialCameraPosition: CameraPosition(target: LatLng(46.177974,6.270123), zoom: 13),
+              mapToolbarEnabled: true,
+              buildingsEnabled: false,
+              myLocationButtonEnabled: true,
+              zoomControlsEnabled: true,
+              mapType: MapType.terrain,
+            )
           ),
-        ),
-        Card(
-          child: ListTile(
-            title: Text('One-line with trailing widget'),
-            trailing: Icon(Icons.more_vert),
-          ),
-        ),
-        Card(
-          child: ListTile(
-            leading: FlutterLogo(),
-            title: Text('One-line with both widgets'),
-            trailing: Icon(Icons.more_vert),
-          ),
-        ),
-        Card(
-          child: ListTile(
-            title: Text('One-line dense ListTile'),
-            dense: true,
-          ),
-        ),
-        Card(
-          child: ListTile(
-            leading: FlutterLogo(size: 56.0),
-            title: Text('Two-line ListTile'),
-            subtitle: Text('Here is a second line'),
-            trailing: Icon(Icons.more_vert),
-          ),
-        ),
-        Card(
-          child: ListTile(
-            leading: FlutterLogo(size: 72.0),
-            title: Text('Three-line ListTile'),
-            subtitle: Text(
-                'A sufficiently long subtitle warrants three lines.'
-            ),
-            trailing: Icon(Icons.more_vert),
-            isThreeLine: true,
-          ),
-        ),
-      ],
-    );
-    /*return ListView.builder(
-      itemCount: detail.tracks.length,
-      itemBuilder: (context, index) => ListTile(
-        leading: Icon(Icons.done),
-        title: Text(
-          detail.tracks[index].name,
-          style: trackNameStyle,
-        ),
+        ],
       ),
-    );*/
+    );
+    /*ListView.builder(
+        itemCount: detail.tracks.length,
+        itemBuilder: (context, index) => ListTile(
+          leading: Icon(Icons.done),
+          title: Text(
+            detail.tracks[index].name,
+            style: trackNameStyle,
+          ),
+        ),
+      )*/
   }
 }
 
@@ -120,8 +91,9 @@ class _DetailBottom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var hugeStyle = Theme.of(context).textTheme.headline1!.copyWith(fontSize: 24);
-    var detail = context.read<DetailModel>();
-    var steps = "Number of Steps: " + detail.tracks[0].steps.toString();
+    //var detail = context.read<DetailModel>();
+    //var steps = "Number of Steps: " + detail.tracks[0].steps.toString();
+    var steps = "Number of Steps: 0";
     return SizedBox(
       height: 100,
       child: Center(
