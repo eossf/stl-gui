@@ -8,6 +8,8 @@ class Screen {
   static const String tracksList = home + 'trackslist';
   static const String googleMaps = home + 'googlemaps';
   static const String geolocation = home + 'geolocation';
+  static const String test = home + 'test';
+  static const String test2 = home + 'test2';
 }
 
 class Latlng {

@@ -1,11 +1,9 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
-
 import 'package:stlgui/models/detail.dart';
-import 'package:stlgui/constants.dart' as Constants;
+import 'package:geolocator/geolocator.dart';
+import 'package:stlgui/main.dart';
 
 class ScreenGoogleMaps extends StatefulWidget {
   const ScreenGoogleMaps({Key? key}) : super(key: key);
@@ -17,11 +15,13 @@ class ScreenGoogleMaps extends StatefulWidget {
 class _ScreenGoogleMapsState extends State<ScreenGoogleMaps> {
   late GoogleMapController mapController;
   Set<Marker> markers = {};
-  LatLng startLocation = LatLng(46.184416227042675018310546875,6.26998200081288814544677734375);
-  LatLng _trackPosition = Constants.Latlng.defaultLatLng;
+  late Position _currentPosition;
+  CameraPosition _cameraPosition = CameraPosition(target: LatLng( 46.177974,6.270123), zoom: 13);
+  LatLng _markerStart = LatLng( 46.177974,6.270123);
 
   @override
   void initState() {
+    getCurrentPosition();
     addMarkers();
     super.initState();
   }
@@ -31,23 +31,22 @@ class _ScreenGoogleMapsState extends State<ScreenGoogleMaps> {
     super.dispose();
   }
 
-  addMarkers() async {
-    BitmapDescriptor markerbitmap = await BitmapDescriptor.fromAssetImage(
-      ImageConfiguration(
-        size: Size(35, 35),
-      ),
-      "assets/starting-point.png",
-    );
+  getCurrentPosition() {
+    Geolocator.getCurrentPosition().then((value) => _currentPosition = value);
+  }
+
+  Future<void> addMarkers() async {
+    BitmapDescriptor bitmapDescriptor = await BitmapDescriptor.fromAssetImage(ImageConfiguration(size: Size(35, 35)),"assets/starting-point.png");
 
     markers.add(
         Marker( //add start location marker
           markerId: MarkerId("starting-point"),
-          position: startLocation, //position of marker
+          position: _markerStart, // LatLng(_currentPosition.latitude, _currentPosition.longitude),
           infoWindow: InfoWindow( //popup info
-            title: 'Starting Point ',
+            title: 'Your current location',
             snippet: 'Start Marker',
           ),
-          icon: markerbitmap,
+          icon: bitmapDescriptor,
         )
     );
 
@@ -59,6 +58,7 @@ class _ScreenGoogleMapsState extends State<ScreenGoogleMaps> {
   @override
   Widget build(BuildContext context) {
     var events = context.read<DetailModel>();
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -80,10 +80,7 @@ class _ScreenGoogleMapsState extends State<ScreenGoogleMaps> {
             mapController = controller;
           });
         },
-        initialCameraPosition: CameraPosition(
-          target: startLocation,
-          zoom: 13.0,
-        ),
+        initialCameraPosition: _cameraPosition,
         markers: markers,
         mapToolbarEnabled: true,
         buildingsEnabled: false,

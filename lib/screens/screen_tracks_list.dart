@@ -100,7 +100,7 @@ class _MyAppBar extends StatelessWidget {
         ),
         IconButton(
           icon: LineIcon.recordVinyl(),
-          onPressed: () => Navigator.pushNamed(context, Constants.Screen.home),
+          onPressed: () => Navigator.pushNamed(context, Constants.Screen.test2),
         ),
         IconButton(
           icon: LineIcon.video(),

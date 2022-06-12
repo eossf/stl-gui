@@ -5,7 +5,7 @@ class GoogleMapsSTL {
     //mapController = controller;
     final marker = Marker(
       markerId: MarkerId('test'),
-      position: LatLng(46.184416227042675018310546875,6.26998200081288814544677734375),
+      position: LatLng(46.177974,6.270123),
       // icon: BitmapDescriptor.,
       infoWindow: InfoWindow(
         title: 'title',

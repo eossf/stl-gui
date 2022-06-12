@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 
-class ScreenGeolocation extends StatefulWidget {
-  const ScreenGeolocation({ Key? key }) : super(key: key);
+class ScreenTest extends StatefulWidget {
+  final String name;
+  const ScreenTest({ Key? key, required this.name }) : super(key: key);
 
   @override
-  State<ScreenGeolocation> createState() => _ScreenGeolocation();
+  State<ScreenTest> createState() => _ScreenTest();
 }
 
-class _ScreenGeolocation extends State<ScreenGeolocation> {
+class _ScreenTest extends State<ScreenTest> {
+  int count = 0;
   var locationText = 'Click me for location';
 
+  /* DONT REMOVE - EXAMPLE OF async determine position GPS / GeoLocator */
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -18,8 +21,16 @@ class _ScreenGeolocation extends State<ScreenGeolocation> {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           ElevatedButton(
-              onPressed: (){},
-              child: Text('Loading...position')),
+              onPressed: () async {
+                //Instead of performing asynchronous work inside a call to setState(),
+                // first execute the work (without updating the widget state),
+                // and then synchronously update the state inside a call to setState().
+                Position _currentPosition = await Geolocator.getCurrentPosition();
+                setState(() {
+                  locationText =  '${_currentPosition.latitude.toString()}, ${_currentPosition.longitude.toString()}';
+                });
+              },
+              child: Text(locationText)),
           const SizedBox(height: 30),
           ClipRRect(
             borderRadius: BorderRadius.circular(4),
@@ -44,10 +55,7 @@ class _ScreenGeolocation extends State<ScreenGeolocation> {
                     primary: Colors.white,
                     textStyle: const TextStyle(fontSize: 20),
                   ),
-                  onPressed: () async {
-                    Position _currentPosition = await Geolocator.getCurrentPosition();
-                    locationText =  '${_currentPosition.latitude.toString()}, ${_currentPosition.longitude.toString()}';
-                  },
+                  onPressed: () { locationText = "search position";  },
                   child: Text(locationText),
                 ),
               ],
@@ -57,4 +65,24 @@ class _ScreenGeolocation extends State<ScreenGeolocation> {
       ),
     );
   }
+
+  /* DONT REMOVE - EXAMPLE OF gesture
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onDoubleTap:() => {
+        setState((){
+          count--;
+        })
+      },
+      onTap: (){
+        setState((){
+          count++;
+        });
+      },
+    child:
+      Text('${widget.name}: $count'),
+    );
+  }*/
+
 }

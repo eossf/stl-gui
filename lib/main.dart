@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:html' as html;
 import 'dart:js' as js;
+import 'package:geolocator/geolocator.dart';
 import 'package:stlgui/screens/screen_geolocation.dart';
 import 'package:stlgui/screens/screen_view_track.dart';
 
@@ -12,19 +13,32 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:stlgui/common/theme.dart';
+import 'package:stlgui/common/geolocation.dart';
 import 'package:stlgui/models/detail.dart';
 import 'package:stlgui/models/events.dart';
 import 'package:stlgui/screens/screen_googlemaps.dart';
 import 'package:stlgui/screens/screen_login.dart';
+import 'package:stlgui/screens/screen_test.dart';
+import 'package:stlgui/screens/screen_test2.dart';
 import 'package:stlgui/screens/screen_tracks_list.dart';
+
 
 import 'models/track.dart';
 
+late Position initialPosition;
+
 void main() async {
+  // SERVICES
+  // geolocation
+  Future<Position> initialPosition = determinePosition();
+
+  // env
   await Future.wait([loadEnv()]);
+
   // after first init do the rest
   js.context["GOOGLE_MAPS_API_KEY"] = dotenv.env["GOOGLE_MAPS_API_KEY"]!;
   html.document.dispatchEvent(html.CustomEvent("GOOGLE_MAPS_API_KEY_event"));
+
   runApp(MyApp(await fetchTracks()));
 }
 
@@ -74,6 +88,8 @@ class MyApp extends StatelessWidget {
           Constants.Screen.googleMaps: (context) => ScreenGoogleMaps(),
           Constants.Screen.viewtrack: (context) => ScreenViewTrack(),
           Constants.Screen.geolocation: (context) => ScreenGeolocation(),
+          //Constants.Screen.test: (context) => ScreenTest(),
+          //Constants.Screen.test2: (context) => ScreenTest2(),
         },
       ),
     );
